@@ -1,0 +1,14 @@
+[Unit]
+Description=Prometheus
+After=network.target auditd.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/sysconfig/prometheus
+User=prometheus
+Group=prometheus
+ExecStart=/usr/bin/prometheus
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
