@@ -1,4 +1,4 @@
-VERSION=0.12.0rc3
+VERSION=0.12.0
 PWD=$(shell pwd)
 EL_VERSION=$(shell rpm -q --whatprovides /etc/redhat-release | awk -F'.' '{print $$3}')
 FULL_VERSION=$(shell rpm -q --whatprovides /etc/redhat-release | awk -F'.' '{print $$3 "." $$4}')

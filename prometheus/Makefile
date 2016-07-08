@@ -1,4 +1,4 @@
-VERSION=0.19.1
+VERSION=0.20.0
 PWD=$(shell pwd)
 EL_VERSION=$(shell rpm -q --whatprovides /etc/redhat-release | awk -F'.' '{print $$3}')
 FULL_VERSION=$(shell rpm -q --whatprovides /etc/redhat-release | awk -F'.' '{print $$3 "." $$4}')

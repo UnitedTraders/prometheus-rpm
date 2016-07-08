@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:		node-exporter
-Version:	0.12.0rc3
+Version:	0.12.0
 Release:	1%{?dist}
 Summary:	Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
 Group:		System Environment/Daemons
@@ -30,7 +30,7 @@ mkdir -vp $RPM_BUILD_ROOT/var/lib/prometheus
 mkdir -vp $RPM_BUILD_ROOT/usr/bin
 mkdir -vp $RPM_BUILD_ROOT/etc/init.d
 mkdir -vp $RPM_BUILD_ROOT/etc/sysconfig
-install -m 755 node_exporter $RPM_BUILD_ROOT/usr/bin/node_exporter
+install -m 755 node_exporter-%{version}.linux-amd64/node_exporter $RPM_BUILD_ROOT/usr/bin/node_exporter
 install -m 755 contrib/node_exporter.init $RPM_BUILD_ROOT/etc/init.d/node_exporter
 install -m 644 contrib/node_exporter.sysconfig $RPM_BUILD_ROOT/etc/sysconfig/node_exporter
 
