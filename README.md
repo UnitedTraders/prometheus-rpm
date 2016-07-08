@@ -3,4 +3,6 @@ Stuff to build rpms for prometheus, node_exporter and alertmanager for amd64 unt
 
 Requires rpmbuild to be installed. To run, simply go into a subdir and run make. 
 
-This is currently used internally for our RHEL 6.6 infrastructure, 'make deploy' deploys it to our internal Nexus repository where it is picked up by yum.
+Use `make` to build for RHEL6 or RHEL7.
+
+Use `make deploy-bintray` to build rpm and upload to bintray. Please set `CREDENTIALS` to `<user_name>:<API_KEY>`, `REPOSITORY` to `<user_name>/<repo_name>`.

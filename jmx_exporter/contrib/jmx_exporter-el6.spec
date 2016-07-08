@@ -1,6 +1,6 @@
 %define debug_package %{nil}
 
-Name:		jmx_exporter
+Name:		jmx-exporter
 Version:	0.6
 Release:	1%{?dist}
 Summary:	Prometheus jmx_exporter
@@ -18,7 +18,7 @@ AutoReqProv:	No
 Prometheus JMX Exporter
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n jmx_exporter-%{version}
 
 %build
 echo
