@@ -10,7 +10,9 @@ URL:		https://github.com/prometheus/node_exporter
 Source0:        https://github.com/prometheus/node_exporter/releases/download/%{version}/node_exporter-%{version}.linux-amd64.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Requires(pre):  /usr/sbin/useradd
-Requires:       daemonize
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
 AutoReqProv:	No
 
 %description
@@ -24,15 +26,19 @@ Prometheus exporter for machine metrics, written in Go with pluggable metric col
 echo
 
 %install
+mkdir -vp $RPM_BUILD_ROOT/usr/bin
 mkdir -vp $RPM_BUILD_ROOT/var/log/prometheus/
 mkdir -vp $RPM_BUILD_ROOT/var/run/prometheus
 mkdir -vp $RPM_BUILD_ROOT/var/lib/prometheus
-mkdir -vp $RPM_BUILD_ROOT/usr/bin
-mkdir -vp $RPM_BUILD_ROOT/etc/init.d
 mkdir -vp $RPM_BUILD_ROOT/etc/sysconfig
-install -m 755 node_exporter-%{version}.linux-amd64/node_exporter $RPM_BUILD_ROOT/usr/bin/node_exporter
-install -m 755 contrib/node_exporter.init $RPM_BUILD_ROOT/etc/init.d/node_exporter
+mkdir -vp $RPM_BUILD_ROOT/usr/lib
+mkdir -vp $RPM_BUILD_ROOT/usr/lib/systemd
+mkdir -vp $RPM_BUILD_ROOT/usr/lib/systemd/system
+
 install -m 644 contrib/node_exporter.sysconfig $RPM_BUILD_ROOT/etc/sysconfig/node_exporter
+install -m 755 contrib/node_exporter.service $RPM_BUILD_ROOT/usr/lib/systemd/system/node_exporter.service
+install -m 755 node_exporter-%{version}.linux-amd64/node_exporter $RPM_BUILD_ROOT/usr/bin/node_exporter
+
 
 %clean
 
@@ -52,7 +58,7 @@ chmod 744 /var/log/prometheus
 %files
 %defattr(-,root,root,-)
 /usr/bin/node_exporter
-/etc/init.d/node_exporter
 %config(noreplace) /etc/sysconfig/node_exporter
 /var/run/prometheus
 /var/log/prometheus
+/usr/lib/systemd/system/node_exporter.service
