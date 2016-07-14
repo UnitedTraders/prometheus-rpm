@@ -1,0 +1,14 @@
+[Unit]
+Description=Node Exporter for Prometheus
+After=network.target auditd.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/sysconfig/node_exporter
+User=prometheus
+Group=prometheus
+ExecStart=/usr/bin/node_exporter $ARGS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
