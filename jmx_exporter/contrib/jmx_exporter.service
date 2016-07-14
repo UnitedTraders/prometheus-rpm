@@ -1,13 +1,13 @@
 [Unit]
-Description=Prometheus
+Description=JMX Exporter for Prometheus
 After=network.target auditd.service
 
 [Service]
 Type=simple
-EnvironmentFile=/etc/sysconfig/prometheus
+EnvironmentFile=/etc/sysconfig/jmx_exporter
 User=prometheus
 Group=prometheus
-ExecStart=/usr/bin/prometheus $ARGS
+ExecStart=/usr/bin/jmx_exporter $ARGS
 Restart=always
 
 [Install]
