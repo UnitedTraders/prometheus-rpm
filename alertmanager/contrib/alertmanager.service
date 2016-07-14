@@ -1,0 +1,14 @@
+[Unit]
+Description=Prometheus Alertmanager
+After=network.target auditd.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/sysconfig/alertmanager
+User=prometheus
+Group=prometheus
+ExecStart=/usr/bin/alertmanager $ARGS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
