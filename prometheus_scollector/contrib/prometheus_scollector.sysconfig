@@ -1,0 +1,10 @@
+#Usage of ./prometheus_scollector:
+#  -http string
+#	address to listen on (default "0.0.0.0:9107")
+#  -scollector.prefix string
+#	HTTP path prefix for listening for scollector-sent data (default "/api/put")
+#  -scollector.sample-expiry duration
+#	How long a sample is valid for. (default 5m0s)
+#  -V	verbose logging
+
+ARGS="-http=0.0.0.0:9107"
