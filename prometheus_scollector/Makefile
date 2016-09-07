@@ -12,9 +12,7 @@ rpm:
 	mkdir -p "$(PWD)/rpmbuild/go"
 	mkdir -p "$(PWD)/rpmbuild/SOURCES/"
 	export GOPATH="$(PWD)/rpmbuild/go" && /usr/bin/go get github.com/gitinsky-bot/prometheus_scollector
-	#cd "$(PWD)/rpmbuild/SOURCES" && git clone http://github.com/gitinsky-bot/prometheus_scollector
 	cp "$(PWD)/rpmbuild/go/bin/prometheus_scollector" contrib
-	#cp "$(PWD)/rpmbuild/go/bin/prometheus_scollector" "$(PWD)/rpmbuild/SOURCES"
 	cp -Rv contrib "$(PWD)/rpmbuild/SOURCES/prometheus_scollector-$(VERSION).linux-amd64"
 	cd "$(PWD)/rpmbuild/SOURCES" && tar cvfz prometheus_scollector-$(VERSION).linux-amd64.tar.gz prometheus_scollector-$(VERSION).linux-amd64
 	rpmbuild --define '_topdir '"$(PWD)/rpmbuild" -ba --clean contrib/prometheus_scollector-$(EL_VERSION).spec
