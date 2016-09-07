@@ -1,0 +1,14 @@
+[Unit]
+Description=Prometheus Scollector App
+After=network.target auditd.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/sysconfig/prometheus_scollector
+User=prometheus
+Group=prometheus
+ExecStart=/usr/bin/prometheus_scollector $ARGS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
